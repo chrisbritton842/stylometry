@@ -32,3 +32,13 @@ def make_word_dict(strings_by_author):
         tokens = nltk.word_tokenize(strings_by_author[author])
         words_by_author[author] = ([token.lower() for token in tokens if token.isalpha()])
     return words_by_author
+
+def find_shortest_corpus(words_by_author):
+    """Return length of shortest corpus."""
+    word_count = []
+    for author in words_by_author:
+        word_count.append(len(words_by_author[author]))
+        print('\nNumber of words for {} = {}\n'.format(author, len(words_by_author[author])))
+    len_shortest_corpus = min(word_count)
+    print('length shortest corpus = {}\n'.format(len_shortest_corpus))
+    return len_shortest_corpus
