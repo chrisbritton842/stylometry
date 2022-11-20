@@ -57,4 +57,22 @@ def word_length_test(words_by_author, len_shortest_corpus):
                                                 label=author,
                                                 title='Word Length')
     plt.legend()
-    #plt.show() # Uncomment to see plot while coding.
+    # plt.show() # Uncomment to see plot while coding.
+
+def stopwords_test(words_by_author, len_shortest_corpus):
+    """Plot stopwords freq by author, truncated to shortest corpus length."""
+    stopwords_by_author_freq_dist = dict()
+    plt.figure(2)
+    stop_words = set(stopwords.words('english')) # Use set for speed.
+    # print('Number of stopwords = {}\n'.format(len(stop_words)))
+    # print('Stopwords = {}\n'.format(stop_words))
+
+    for i, author in enumerate(words_by_author):
+        stopwords_by_author = [word for word in words_by_author[author][:len_shortest_corpus] if word in stop_words]
+        stopwords_by_author_freq_dist[author] = nltk.FreqDist(stopwords_by_author)
+        stopwords_by_author_freq_dist[author].plot(50,
+                                                    label=author,
+                                                    linestyle=LINES[i],
+                                                    title='50 Most Common Stopwords')
+    plt.legend()
+    # plt.show() # Uncomment to see plot while coding function.
